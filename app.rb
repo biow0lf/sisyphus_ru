@@ -36,8 +36,8 @@ get %r{/(en|ru|uk|br)/people} do |locale|
   redirect "http://packages.altlinux.org/#{locale}/Sisyphus/people", 301
 end
 
-get %r{/(en|ru|uk|br)/security} do |locale|
-  redirect "http://packages.altlinux.org/#{locale}/security", 301
+get '/team/:team' do |team|
+  redirect "http://packages.altlinux.org/ru/Sisyphus/teams/#{team}", 301
 end
 
 get '/' do
