@@ -1,7 +1,7 @@
 require 'rake/testtask'
 
 Rake::TestTask.new(:test) do |test|
-  test.pattern = '*test.rb'
+  test.pattern = 'test.rb'
   test.verbose = true
 end
 
