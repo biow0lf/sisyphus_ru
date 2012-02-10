@@ -2,8 +2,6 @@ require 'rubygems'
 require 'bundler/setup'
 require 'sinatra'
 
-# set(:locale) {|locale| conditions {value} }
-
 before '/*' do
   unless request.path_info == '/'
     while request.path_info[-1] == '/'
