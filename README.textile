@@ -1,0 +1,4 @@
+h1. Welcome
+
+!https://gemnasium.com/biow0lf/sisyphus_ru.png(Dependency Status)!:https://gemnasium.com/biow0lf/sisyphus_ru
+!https://secure.travis-ci.org/biow0lf/sisyphus_ru.png(Build Status)!:http://travis-ci.org/biow0lf/sisyphus_ru.png_
