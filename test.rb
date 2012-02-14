@@ -9,12 +9,12 @@ class SisyphusAppTest < Test::Unit::TestCase
     Sinatra::Application
   end
 
-  # GET '//////' :)
-  def test_strip_slashes
-    get '//////'
-    assert_equal 'http://packages.altlinux.org/ru', last_response.location
-    assert_equal 301, last_response.status
-  end
+  # # GET '//////' :)
+  # def test_strip_slashes
+  #   get '//////'
+  #   assert_equal 'http://packages.altlinux.org/ru', last_response.location
+  #   assert_equal 301, last_response.status
+  # end
 
   # GET '/'
   def test_root_url
@@ -152,7 +152,7 @@ class SisyphusAppTest < Test::Unit::TestCase
 
   # GET '/packager/:maintainer/allbugs'
   def test_maintainer_allbugs_url
-    get '/packager/ldv/bugs'
+    get '/packager/ldv/allbugs'
     assert_equal 'http://packages.altlinux.org/ru/Sisyphus/maintainers/ldv/allbugs', last_response.location
     assert_equal 301, last_response.status
   end
@@ -174,7 +174,7 @@ class SisyphusAppTest < Test::Unit::TestCase
   end
 
   # GET '/:locale/packager/:maintainer/repocop'
-  def test_maintainer_allbugs_url_with_locale
+  def test_maintainer_repocop_url_with_locale
     ['en', 'ru', 'br'].each do |locale|
       get "/#{locale}/packager/ldv/repocop"
       assert_equal "http://packages.altlinux.org/#{locale}/Sisyphus/maintainers/ldv/repocop", last_response.location
@@ -190,7 +190,7 @@ class SisyphusAppTest < Test::Unit::TestCase
   end
 
   # GET '/:locale/packages'
-  def test_maintainer_allbugs_url_with_locale
+  def test_packages_url_with_locale
     ['en', 'ru', 'br'].each do |locale|
       get "/#{locale}/packages"
       assert_equal "http://packages.altlinux.org/#{locale}/Sisyphus/packages", last_response.location
@@ -240,7 +240,7 @@ class SisyphusAppTest < Test::Unit::TestCase
   # GET '/:locale/packages/:group1/:group2/:group3'
   def test_packages_level3_url_with_locale
     ['en', 'ru', 'br'].each do |locale|
-      get "/#{locale}/Sisyphus/packages/System/Configuration/Packaging"
+      get "/#{locale}/packages/System/Configuration/Packaging"
       assert_equal "http://packages.altlinux.org/#{locale}/Sisyphus/packages/System/Configuration/Packaging", last_response.location
       assert_equal 301, last_response.status
     end
