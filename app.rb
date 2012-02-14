@@ -2,14 +2,6 @@ require 'rubygems'
 require 'bundler/setup'
 require 'sinatra'
 
-# before '/*' do
-#   unless request.path_info == '/'
-#     while request.path_info[-1] == '/'
-#       request.path_info = request.path_info[0..-2]
-#     end
-#   end
-# end
-
 get '/' do
   redirect 'http://packages.altlinux.org/ru', 301
 end
