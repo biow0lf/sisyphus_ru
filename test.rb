@@ -86,14 +86,14 @@ class SisyphusAppTest < Test::Unit::TestCase
     end
   end
 
-  # GET '/team/security'
+  # GET '/team/:name'
   def test_team_url
     get '/team/security'
     assert_equal 'http://packages.altlinux.org/ru/Sisyphus/teams/security', last_response.location
     assert_equal 301, last_response.status
   end
 
-  # GET '/:locale/team/security'
+  # GET '/:locale/team/:name'
   def test_team_url_with_locale
     ['en', 'ru', 'br'].each do |locale|
       get "/#{locale}/team/security"
@@ -134,14 +134,14 @@ class SisyphusAppTest < Test::Unit::TestCase
     end
   end
 
-  # GET '/packager/ldv/bugs'
+  # GET '/packager/:maintainer/bugs'
   def test_maintainer_bugs_url
     get '/packager/ldv/bugs'
     assert_equal 'http://packages.altlinux.org/ru/Sisyphus/maintainers/ldv/bugs', last_response.location
     assert_equal 301, last_response.status
   end
 
-  # GET '/:locale/packager/ldv/bugs'
+  # GET '/:locale/packager/:maintainer/bugs'
   def test_maintainer_bugs_url_with_locale
     ['en', 'ru', 'br'].each do |locale|
       get "/#{locale}/packager/ldv/bugs"
@@ -246,14 +246,14 @@ class SisyphusAppTest < Test::Unit::TestCase
     end
   end
 
-  # GET '/srpm/Sisyphus/:name'
+  # GET '/srpm/:branch/:name'
   def test_srpm_url
     get '/srpm/Sisyphus/glibc'
     assert_equal 'http://packages.altlinux.org/ru/Sisyphus/srpms/glibc', last_response.location
     assert_equal 301, last_response.status
   end
 
-  # GET '/:locale/srpm/Sisyphus/:name'
+  # GET '/:locale/srpm/:branch/:name'
   def test_srpm_url_with_locale
     ['en', 'ru', 'br'].each do |locale|
       get "/#{locale}/srpm/Sisyphus/glibc"
@@ -262,15 +262,38 @@ class SisyphusAppTest < Test::Unit::TestCase
     end
   end
 
-  # GET '/srpm/Sisyphus/:name/changelog'
+  # GET '/srpm/:branch/:name/changelog'
   def test_srpm_changelog_url
     get '/srpm/Sisyphus/glibc/changelog'
-    assert_equal 'http://packages.altlinux.org/ru/Sisyphus/srpms/glibc', last_response.location
+    assert_equal 'http://packages.altlinux.org/ru/Sisyphus/srpms/glibc/changelog', last_response.location
     assert_equal 301, last_response.status
   end
 
+  # GET '/:locale/srpm/:branch/:name/changelog'
+  def test_srpm_changelog_url_with_locale
+    ['en', 'ru', 'br'].each do |locale|
+      get "/#{locale}/srpm/Sisyphus/glibc/changelog"
+      assert_equal "http://packages.altlinux.org/#{locale}/Sisyphus/srpms/glibc/changelog", last_response.location
+      assert_equal 301, last_response.status
+    end
+  end
 
-  # http://sisyphus.ru/ru/srpm/Sisyphus/Ri-li/spec
+  # GET /srpm/:branch/:name/spec
+  def test_srpm_spec_url
+    get '/srpm/Sisyphus/glibc/spec'
+    assert_equal 'http://packages.altlinux.org/ru/Sisyphus/srpms/glibc/spec', last_response.location
+    assert_equal 301, last_response.status
+  end
+
+  # GET /:locale/srpm/:branch/:name/spec
+  def test_srpm_spec_url_with_locale
+    ['en', 'ru', 'br'].each do |locale|
+      get "/#{locale}/srpm/Sisyphus/glibc/spec"
+      assert_equal "http://packages.altlinux.org/#{locale}/Sisyphus/srpms/glibc/spec", last_response.location
+      assert_equal 301, last_response.status
+    end
+  end
+
   # http://sisyphus.ru/ru/srpm/Sisyphus/Ri-li/patches
   # http://sisyphus.ru/ru/srpm/Sisyphus/Ri-li/sources
   # http://sisyphus.ru/ru/srpm/Sisyphus/Ri-li/get
