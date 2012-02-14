@@ -7,7 +7,8 @@ get '/' do
 end
 
 get '/:first' do
-  case params[:first]
+  first = params[:first]
+  case first
   when 'project'
     redirect 'http://packages.altlinux.org/ru/project', 301
   when 'security'
@@ -17,30 +18,32 @@ get '/:first' do
   when 'packages'
     redirect 'http://packages.altlinux.org/ru/Sisyphus/packages', 301
   when 'en', 'ru', 'br'
-    redirect "http://packages.altlinux.org/#{params[:first]}", 301
+    redirect "http://packages.altlinux.org/#{first}", 301
   else
     raise Sinatra::NotFound
   end
 end
 
 get '/:first/:second' do
-  case params[:first]
+  first = params[:first]
+  second = params[:second]
+  case first
   when 'team'
-    redirect "http://packages.altlinux.org/ru/Sisyphus/teams/#{params[:second]}", 301
+    redirect "http://packages.altlinux.org/ru/Sisyphus/teams/#{second}", 301
   when 'packager'
-    redirect "http://packages.altlinux.org/ru/Sisyphus/maintainers/#{params[:second]}", 301
+    redirect "http://packages.altlinux.org/ru/Sisyphus/maintainers/#{second}", 301
   when 'packages'
-    redirect "http://packages.altlinux.org/ru/Sisyphus/packages/#{params[:second]}", 301
+    redirect "http://packages.altlinux.org/ru/Sisyphus/packages/#{second}", 301
   when 'en', 'ru', 'br'
-    case params[:second]
+    case second
     when 'project'
-      redirect "http://packages.altlinux.org/#{params[:first]}/project", 301
+      redirect "http://packages.altlinux.org/#{first}/project", 301
     when 'security'
-      redirect "http://packages.altlinux.org/#{params[:first]}/security", 301
+      redirect "http://packages.altlinux.org/#{first}/security", 301
     when 'people'
-      redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/people", 301
+      redirect "http://packages.altlinux.org/#{first}/Sisyphus/people", 301
     when 'packages'
-      redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/packages", 301
+      redirect "http://packages.altlinux.org/#{first}/Sisyphus/packages", 301
     else
       raise Sinatra::NotFound
     end
@@ -50,32 +53,35 @@ get '/:first/:second' do
 end
 
 get '/:first/:second/:third' do
-  case params[:first]
+  first = params[:first]
+  second = params[:second]
+  third = params[:third]
+  case first
   when 'packager'
-    case params[:third]
+    case third
     when 'srpms'
-      redirect "http://packages.altlinux.org/ru/Sisyphus/maintainers/#{params[:second]}/srpms", 301
+      redirect "http://packages.altlinux.org/ru/Sisyphus/maintainers/#{second}/srpms", 301
     when 'bugs'
-      redirect "http://packages.altlinux.org/ru/Sisyphus/maintainers/#{params[:second]}/bugs", 301
+      redirect "http://packages.altlinux.org/ru/Sisyphus/maintainers/#{second}/bugs", 301
     when 'allbugs'
-      redirect "http://packages.altlinux.org/ru/Sisyphus/maintainers/#{params[:second]}/allbugs", 301
+      redirect "http://packages.altlinux.org/ru/Sisyphus/maintainers/#{second}/allbugs", 301
     when 'repocop'
-      redirect "http://packages.altlinux.org/ru/Sisyphus/maintainers/#{params[:second]}/repocop", 301
+      redirect "http://packages.altlinux.org/ru/Sisyphus/maintainers/#{second}/repocop", 301
     else
       raise Sinatra::NotFound
     end
   when 'packages'
-    redirect "http://packages.altlinux.org/ru/Sisyphus/packages/#{params[:second]}/#{params[:third]}", 301
+    redirect "http://packages.altlinux.org/ru/Sisyphus/packages/#{second}/#{third}", 301
   when 'srpm'
-    redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{params[:third]}", 301
+    redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{third}", 301
   when 'en', 'ru', 'br'
-    case params[:second]
+    case second
     when 'team'
-      redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/teams/#{params[:third]}", 301
+      redirect "http://packages.altlinux.org/#{first}/Sisyphus/teams/#{third}", 301
     when 'packager'
-      redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/maintainers/#{params[:third]}", 301
+      redirect "http://packages.altlinux.org/#{first}/Sisyphus/maintainers/#{third}", 301
     when 'packages'
-      redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/packages/#{params[:third]}", 301
+      redirect "http://packages.altlinux.org/#{first}/Sisyphus/packages/#{third}", 301
     else
       raise Sinatra::NotFound
     end
@@ -85,47 +91,51 @@ get '/:first/:second/:third' do
 end
 
 get '/:first/:second/:third/:fourth' do
-  case params[:first]
+  first = params[:first]
+  second = params[:second]
+  third = params[:third]
+  fourth = params[:fourth]
+  case first
   when 'packages'
-    redirect "http://packages.altlinux.org/ru/Sisyphus/packages/#{params[:second]}/#{params[:third]}/#{params[:fourth]}", 301
+    redirect "http://packages.altlinux.org/ru/Sisyphus/packages/#{second}/#{third}/#{fourth}", 301
   when 'srpm'
     case params[:fourth]
     when 'changelog'
-      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{params[:third]}/changelog", 301
+      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{third}/changelog", 301
     when 'spec'
-      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{params[:third]}/spec", 301
+      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{third}/spec", 301
     when 'get'
-      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{params[:third]}/get", 301
+      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{third}/get", 301
     when 'gear'
-      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{params[:third]}/gear", 301
+      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{third}/gear", 301
     when 'bugs'
-      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{params[:third]}/bugs", 301
+      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{third}/bugs", 301
     when 'allbugs'
-      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{params[:third]}/allbugs", 301
+      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{third}/allbugs", 301
     when 'repocop'
-      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{params[:third]}/repocop", 301
+      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{third}/repocop", 301
     else
       raise Sinatra::NotFound
     end
   when 'en', 'ru', 'br'
-    case params[:second]
+    case second
     when 'packager'
-      case params[:fourth]
+      case fourth
       when 'srpms'
-        redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/maintainers/#{params[:third]}/srpms", 301
+        redirect "http://packages.altlinux.org/#{first}/Sisyphus/maintainers/#{third}/srpms", 301
       when 'bugs'
-        redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/maintainers/#{params[:third]}/bugs", 301
+        redirect "http://packages.altlinux.org/#{first}/Sisyphus/maintainers/#{third}/bugs", 301
       when 'allbugs'
-        redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/maintainers/#{params[:third]}/allbugs", 301
+        redirect "http://packages.altlinux.org/#{first}/Sisyphus/maintainers/#{third}/allbugs", 301
       when 'repocop'
-        redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/maintainers/#{params[:third]}/repocop", 301
+        redirect "http://packages.altlinux.org/#{first}/Sisyphus/maintainers/#{third}/repocop", 301
       else
         raise Sinatra::NotFound
       end
     when 'packages'
-      redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/packages/#{params[:third]}/#{params[:fourth]}", 301
+      redirect "http://packages.altlinux.org/#{first}/Sisyphus/packages/#{third}/#{fourth}", 301
     when 'srpm'
-      redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/srpms/#{params[:fourth]}", 301
+      redirect "http://packages.altlinux.org/#{first}/Sisyphus/srpms/#{fourth}", 301
     else
       raise Sinatra::NotFound
     end
@@ -135,27 +145,32 @@ get '/:first/:second/:third/:fourth' do
 end
 
 get '/:first/:second/:third/:fourth/:fifth' do
-  case params[:first]
+  first = params[:first]
+  second = params[:second]
+  third = params[:third]
+  fourth = params[:fourth]
+  fifth = params[:fifth]
+  case first
   when 'en', 'ru', 'br'
-    case params[:second]
+    case second
     when 'packages'
-      redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/packages/#{params[:third]}/#{params[:fourth]}/#{params[:fifth]}", 301
+      redirect "http://packages.altlinux.org/#{first}/Sisyphus/packages/#{third}/#{fourth}/#{fifth}", 301
     when 'srpm'
       case params[:fifth]
       when 'changelog'
-        redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/srpms/#{params[:fourth]}/changelog", 301
+        redirect "http://packages.altlinux.org/#{first}/Sisyphus/srpms/#{fourth}/changelog", 301
       when 'spec'
-        redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/srpms/#{params[:fourth]}/spec", 301
+        redirect "http://packages.altlinux.org/#{first}/Sisyphus/srpms/#{fourth}/spec", 301
       when 'get'
-        redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/srpms/#{params[:fourth]}/get", 301
+        redirect "http://packages.altlinux.org/#{first}/Sisyphus/srpms/#{fourth}/get", 301
       when 'gear'
-        redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/srpms/#{params[:fourth]}/gear", 301
+        redirect "http://packages.altlinux.org/#{first}/Sisyphus/srpms/#{fourth}/gear", 301
       when 'bugs'
-        redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/srpms/#{params[:fourth]}/bugs", 301
+        redirect "http://packages.altlinux.org/#{first}/Sisyphus/srpms/#{fourth}/bugs", 301
       when 'allbugs'
-        redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/srpms/#{params[:fourth]}/allbugs", 301
+        redirect "http://packages.altlinux.org/#{first}/Sisyphus/srpms/#{fourth}/allbugs", 301
       when 'repocop'
-        redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/srpms/#{params[:fourth]}/repocop", 301
+        redirect "http://packages.altlinux.org/#{first}/Sisyphus/srpms/#{fourth}/repocop", 301
       else
         raise Sinatra::NotFound
       end
