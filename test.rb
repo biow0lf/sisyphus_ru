@@ -9,13 +9,6 @@ class SisyphusAppTest < Test::Unit::TestCase
     Sinatra::Application
   end
 
-  # # GET '//////' :)
-  # def test_strip_slashes
-  #   get '//////'
-  #   assert_equal 'http://packages.altlinux.org/ru', last_response.location
-  #   assert_equal 301, last_response.status
-  # end
-
   # GET '/'
   def test_root_url
     get '/'
