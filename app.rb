@@ -91,3 +91,56 @@ get '/:first/:second/:third' do
     raise Sinatra::NotFound
   end
 end
+
+get '/:first/:second/:third/:fourth' do
+  case params[:first]
+  when 'packages'
+    redirect "http://packages.altlinux.org/ru/Sisyphus/packages/#{params[:second]}/#{params[:third]}/#{params[:fourth]}", 301
+  when 'srpm'
+    case params[:fourth]
+    when 'changelog'
+      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{params[:third]}/changelog", 301
+    when 'spec'
+      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{params[:third]}/spec", 301
+    when 'get'
+      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{params[:third]}/get", 301
+    when 'gear'
+      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{params[:third]}/gear", 301
+    when 'bugs'
+      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{params[:third]}/bugs", 301
+    when 'allbugs'
+      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{params[:third]}/allbugs", 301
+    when 'repocop'
+      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{params[:third]}/repocop", 301
+    else
+      raise Sinatra::NotFound
+    end
+  when 'en', 'ru', 'br'
+    case params[:second]
+    when 'packager'
+      case params[:fourth]
+      when 'srpms'
+        redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/maintainers/#{params[:third]}/srpms", 301
+      when 'bugs'
+        redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/maintainers/#{params[:third]}/bugs", 301
+      when 'allbugs'
+        redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/maintainers/#{params[:third]}/allbugs", 301
+      when 'repocop'
+        redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/maintainers/#{params[:third]}/repocop", 301
+      else
+        raise Sinatra::NotFound
+      end
+    when 'packages'
+      redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/packages/#{params[:third]}/#{params[:fourth]}", 301
+    when 'srpm'
+      redirect "http://packages.altlinux.org/#{params[:first]}/Sisyphus/srpms/#{params[:fourth]}", 301
+    else
+      raise Sinatra::NotFound
+    end
+  else
+    raise Sinatra::NotFound
+  end
+end
+
+# get '/:first/:second/:third/:fourth/:fifth' do
+# end
