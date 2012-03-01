@@ -240,49 +240,151 @@ class SisyphusAppTest < Test::Unit::TestCase
   end
 
   # GET '/srpm/:branch/:name'
+  # TODO: /srpm/Branch3/glibc/
   def test_srpm_url
     get '/srpm/Sisyphus/glibc'
     assert_equal 'http://packages.altlinux.org/ru/Sisyphus/srpms/glibc', last_response.location
     assert_equal 301, last_response.status
+
+    get '/srpm/Branch51/glibc'
+    assert_equal 'http://packages.altlinux.org/ru/5.1/srpms/glibc', last_response.location
+    assert_equal 301, last_response.status
+
+    get '/srpm/p5/glibc'
+    assert_equal 'http://packages.altlinux.org/ru/Platform5/srpms/glibc', last_response.location
+    assert_equal 301, last_response.status
+
+    get '/srpm/Branch41/glibc'
+    assert_equal 'http://packages.altlinux.org/ru/4.1/srpms/glibc', last_response.location
+    assert_equal 301, last_response.status
+
+    get '/srpm/Branch4/glibc'
+    assert_equal 'http://packages.altlinux.org/ru/4.0/srpms/glibc', last_response.location
+    assert_equal 301, last_response.status
   end
 
   # GET '/:locale/srpm/:branch/:name'
+  # TODO: /ru/srpm/Branch3/glibc/
   def test_srpm_url_with_locale
     ['en', 'ru', 'br'].each do |locale|
       get "/#{locale}/srpm/Sisyphus/glibc"
       assert_equal "http://packages.altlinux.org/#{locale}/Sisyphus/srpms/glibc", last_response.location
       assert_equal 301, last_response.status
+
+      get "/#{locale}/srpm/Branch51/glibc"
+      assert_equal "http://packages.altlinux.org/#{locale}/5.1/srpms/glibc", last_response.location
+      assert_equal 301, last_response.status
+
+      get "/#{locale}/srpm/p5/glibc"
+      assert_equal "http://packages.altlinux.org/#{locale}/Platform5/srpms/glibc", last_response.location
+      assert_equal 301, last_response.status
+
+      get "/#{locale}/srpm/Branch41/glibc"
+      assert_equal "http://packages.altlinux.org/#{locale}/4.1/srpms/glibc", last_response.location
+      assert_equal 301, last_response.status
+
+      get "/#{locale}/srpm/Branch4/glibc"
+      assert_equal "http://packages.altlinux.org/#{locale}/4.0/srpms/glibc", last_response.location
+      assert_equal 301, last_response.status
     end
   end
 
   # GET '/srpm/:branch/:name/changelog'
+  # TODO: /srpm/Branch3/glibc/changelog
   def test_srpm_changelog_url
     get '/srpm/Sisyphus/glibc/changelog'
     assert_equal 'http://packages.altlinux.org/ru/Sisyphus/srpms/glibc/changelog', last_response.location
     assert_equal 301, last_response.status
+
+    get '/srpm/Branch51/glibc/changelog'
+    assert_equal 'http://packages.altlinux.org/ru/5.1/srpms/glibc/changelog', last_response.location
+    assert_equal 301, last_response.status
+
+    get '/srpm/p5/glibc/changelog'
+    assert_equal 'http://packages.altlinux.org/ru/Platform5/srpms/glibc/changelog', last_response.location
+    assert_equal 301, last_response.status
+
+    get '/srpm/Branch41/glibc/changelog'
+    assert_equal 'http://packages.altlinux.org/ru/4.1/srpms/glibc/changelog', last_response.location
+    assert_equal 301, last_response.status
+
+    get '/srpm/Branch4/glibc/changelog'
+    assert_equal 'http://packages.altlinux.org/ru/4.0/srpms/glibc/changelog', last_response.location
+    assert_equal 301, last_response.status
   end
 
   # GET '/:locale/srpm/:branch/:name/changelog'
+  # TODO: /srpm/Branch3/glibc/changelog
   def test_srpm_changelog_url_with_locale
     ['en', 'ru', 'br'].each do |locale|
       get "/#{locale}/srpm/Sisyphus/glibc/changelog"
       assert_equal "http://packages.altlinux.org/#{locale}/Sisyphus/srpms/glibc/changelog", last_response.location
       assert_equal 301, last_response.status
+
+      get "/#{locale}/srpm/Branch51/glibc/changelog"
+      assert_equal "http://packages.altlinux.org/#{locale}/5.1/srpms/glibc/changelog", last_response.location
+      assert_equal 301, last_response.status
+
+      get "/#{locale}/srpm/p5/glibc/changelog"
+      assert_equal "http://packages.altlinux.org/#{locale}/Platform5/srpms/glibc/changelog", last_response.location
+      assert_equal 301, last_response.status
+
+      get "/#{locale}/srpm/Branch41/glibc/changelog"
+      assert_equal "http://packages.altlinux.org/#{locale}/4.1/srpms/glibc/changelog", last_response.location
+      assert_equal 301, last_response.status
+
+      get "/#{locale}/srpm/Branch4/glibc/changelog"
+      assert_equal "http://packages.altlinux.org/#{locale}/4.0/srpms/glibc/changelog", last_response.location
+      assert_equal 301, last_response.status
     end
   end
 
   # GET /srpm/:branch/:name/spec
+  # TODO: /srpm/Branch3/glibc/spec
   def test_srpm_spec_url
     get '/srpm/Sisyphus/glibc/spec'
     assert_equal 'http://packages.altlinux.org/ru/Sisyphus/srpms/glibc/spec', last_response.location
     assert_equal 301, last_response.status
+
+    get '/srpm/Branch51/glibc/spec'
+    assert_equal 'http://packages.altlinux.org/ru/5.1/srpms/glibc/spec', last_response.location
+    assert_equal 301, last_response.status
+
+    get '/srpm/p5/glibc/spec'
+    assert_equal 'http://packages.altlinux.org/ru/Platform5/srpms/glibc/spec', last_response.location
+    assert_equal 301, last_response.status
+
+    get '/srpm/Branch41/glibc/spec'
+    assert_equal 'http://packages.altlinux.org/ru/4.1/srpms/glibc/spec', last_response.location
+    assert_equal 301, last_response.status
+
+    get '/srpm/Branch4/glibc/spec'
+    assert_equal 'http://packages.altlinux.org/ru/4.0/srpms/glibc/spec', last_response.location
+    assert_equal 301, last_response.status
   end
 
   # GET /:locale/srpm/:branch/:name/spec
+  # TODO: /ru/srpm/Branch3/glibc/spec
   def test_srpm_spec_url_with_locale
     ['en', 'ru', 'br'].each do |locale|
       get "/#{locale}/srpm/Sisyphus/glibc/spec"
       assert_equal "http://packages.altlinux.org/#{locale}/Sisyphus/srpms/glibc/spec", last_response.location
+      assert_equal 301, last_response.status
+
+      get "/#{locale}/srpm/Branch51/glibc/spec"
+      assert_equal "http://packages.altlinux.org/#{locale}/5.1/srpms/glibc/spec", last_response.location
+      assert_equal 301, last_response.status
+
+      get "/#{locale}/srpm/p5/glibc/spec"
+      assert_equal "http://packages.altlinux.org/#{locale}/Platform5/srpms/glibc/spec", last_response.location
+      assert_equal 301, last_response.status
+
+      get "/#{locale}/srpm/Branch41/glibc/spec"
+      assert_equal "http://packages.altlinux.org/#{locale}/4.1/srpms/glibc/spec", last_response.location
+      assert_equal 301, last_response.status
+
+      get "/#{locale}/srpm/Branch4/glibc/spec"
+      assert_equal "http://packages.altlinux.org/#{locale}/4.0/srpms/glibc/spec", last_response.location
       assert_equal 301, last_response.status
     end
   end
@@ -290,19 +392,55 @@ class SisyphusAppTest < Test::Unit::TestCase
   # TODO:
   # http://sisyphus.ru/ru/srpm/Sisyphus/Ri-li/patches
   # http://sisyphus.ru/ru/srpm/Sisyphus/Ri-li/sources
+  # TODO: /ru/srpm/Branch3/glibc/patches
+  # TODO: /ru/srpm/Branch3/glibc/sources
 
   # GET /srpm/:branch/:name/get
+  # TODO: /srpm/Branch3/glibc/get
   def test_srpm_get_url
     get '/srpm/Sisyphus/glibc/get'
     assert_equal 'http://packages.altlinux.org/ru/Sisyphus/srpms/glibc/get', last_response.location
     assert_equal 301, last_response.status
+
+    get '/srpm/Branch51/glibc/get'
+    assert_equal 'http://packages.altlinux.org/ru/5.1/srpms/glibc/get', last_response.location
+    assert_equal 301, last_response.status
+
+    get '/srpm/p5/glibc/get'
+    assert_equal 'http://packages.altlinux.org/ru/Platform5/srpms/glibc/get', last_response.location
+    assert_equal 301, last_response.status
+
+    get '/srpm/Branch41/glibc/get'
+    assert_equal 'http://packages.altlinux.org/ru/4.1/srpms/glibc/get', last_response.location
+    assert_equal 301, last_response.status
+
+    get '/srpm/Branch4/glibc/get'
+    assert_equal 'http://packages.altlinux.org/ru/4.0/srpms/glibc/get', last_response.location
+    assert_equal 301, last_response.status
   end
 
   # GET /:locale/srpm/:branch/:name/get
+  # TODO: /ru/srpm/Branch3/glibc/get
   def test_srpm_get_url_with_locale
     ['en', 'ru', 'br'].each do |locale|
       get "/#{locale}/srpm/Sisyphus/glibc/get"
       assert_equal "http://packages.altlinux.org/#{locale}/Sisyphus/srpms/glibc/get", last_response.location
+      assert_equal 301, last_response.status
+
+      get "/#{locale}/srpm/Branch51/glibc/get"
+      assert_equal "http://packages.altlinux.org/#{locale}/5.1/srpms/glibc/get", last_response.location
+      assert_equal 301, last_response.status
+
+      get "/#{locale}/srpm/p5/glibc/get"
+      assert_equal "http://packages.altlinux.org/#{locale}/Platform5/srpms/glibc/get", last_response.location
+      assert_equal 301, last_response.status
+
+      get "/#{locale}/srpm/Branch41/glibc/get"
+      assert_equal "http://packages.altlinux.org/#{locale}/4.1/srpms/glibc/get", last_response.location
+      assert_equal 301, last_response.status
+
+      get "/#{locale}/srpm/Branch4/glibc/get"
+      assert_equal "http://packages.altlinux.org/#{locale}/4.0/srpms/glibc/get", last_response.location
       assert_equal 301, last_response.status
     end
   end
@@ -312,6 +450,23 @@ class SisyphusAppTest < Test::Unit::TestCase
     get '/srpm/Sisyphus/glibc/gear'
     assert_equal 'http://packages.altlinux.org/ru/Sisyphus/srpms/glibc/gear', last_response.location
     assert_equal 301, last_response.status
+
+    # TODO:
+    # get '/srpm/Branch51/glibc/gear'
+    # assert_equal 'http://packages.altlinux.org/ru/5.1/srpms/glibc/gear', last_response.location
+    # assert_equal 301, last_response.status
+    #
+    # get '/srpm/p5/glibc/gear'
+    # assert_equal 'http://packages.altlinux.org/ru/Platform5/srpms/glibc/gear', last_response.location
+    # assert_equal 301, last_response.status
+    #
+    # get '/srpm/Branch41/glibc/gear'
+    # assert_equal 'http://packages.altlinux.org/ru/4.1/srpms/glibc/gear', last_response.location
+    # assert_equal 301, last_response.status
+    #
+    # get '/srpm/Branch4/glibc/gear'
+    # assert_equal 'http://packages.altlinux.org/ru/4.0/srpms/glibc/gear', last_response.location
+    # assert_equal 301, last_response.status
   end
 
   # GET /:locale/srpm/:branch/:name/gear
@@ -320,6 +475,23 @@ class SisyphusAppTest < Test::Unit::TestCase
       get "/#{locale}/srpm/Sisyphus/glibc/gear"
       assert_equal "http://packages.altlinux.org/#{locale}/Sisyphus/srpms/glibc/gear", last_response.location
       assert_equal 301, last_response.status
+
+      # TODO:
+      # get "/#{locale}/srpm/Branch51/glibc/gear"
+      # assert_equal "http://packages.altlinux.org/#{locale}/5.1/srpms/glibc/gear", last_response.location
+      # assert_equal 301, last_response.status
+      #
+      # get "/#{locale}/srpm/p5/glibc/gear"
+      # assert_equal "http://packages.altlinux.org/#{locale}/Platform5/srpms/glibc/gear", last_response.location
+      # assert_equal 301, last_response.status
+      #
+      # get "/#{locale}/srpm/Branch41/glibc/gear"
+      # assert_equal "http://packages.altlinux.org/#{locale}/4.1/srpms/glibc/gear", last_response.location
+      # assert_equal 301, last_response.status
+      #
+      # get "/#{locale}/srpm/Branch4/glibc/gear"
+      # assert_equal "http://packages.altlinux.org/#{locale}/4.0/srpms/glibc/gear", last_response.location
+      # assert_equal 301, last_response.status
     end
   end
 

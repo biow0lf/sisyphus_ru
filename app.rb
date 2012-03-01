@@ -73,7 +73,12 @@ get '/:first/:second/:third' do
   when 'packages'
     redirect "http://packages.altlinux.org/ru/Sisyphus/packages/#{second}/#{third}", 301
   when 'srpm'
-    redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{third}", 301
+    branch = second
+    branch = '5.1' if branch == 'Branch51'
+    branch = 'Platform5' if branch == 'p5'
+    branch = '4.1' if branch == 'Branch41'
+    branch = '4.0' if branch == 'Branch4'
+    redirect "http://packages.altlinux.org/ru/#{branch}/srpms/#{third}", 301
   when 'en', 'ru', 'br'
     case second
     when 'team'
@@ -101,11 +106,26 @@ get '/:first/:second/:third/:fourth' do
   when 'srpm'
     case params[:fourth]
     when 'changelog'
-      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{third}/changelog", 301
+      branch = second
+      branch = '5.1' if branch == 'Branch51'
+      branch = 'Platform5' if branch == 'p5'
+      branch = '4.1' if branch == 'Branch41'
+      branch = '4.0' if branch == 'Branch4'
+      redirect "http://packages.altlinux.org/ru/#{branch}/srpms/#{third}/changelog", 301
     when 'spec'
-      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{third}/spec", 301
+      branch = second
+      branch = '5.1' if branch == 'Branch51'
+      branch = 'Platform5' if branch == 'p5'
+      branch = '4.1' if branch == 'Branch41'
+      branch = '4.0' if branch == 'Branch4'
+      redirect "http://packages.altlinux.org/ru/#{branch}/srpms/#{third}/spec", 301
     when 'get'
-      redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{third}/get", 301
+      branch = second
+      branch = '5.1' if branch == 'Branch51'
+      branch = 'Platform5' if branch == 'p5'
+      branch = '4.1' if branch == 'Branch41'
+      branch = '4.0' if branch == 'Branch4'
+      redirect "http://packages.altlinux.org/ru/#{branch}/srpms/#{third}/get", 301
     when 'gear'
       redirect "http://packages.altlinux.org/ru/Sisyphus/srpms/#{third}/gear", 301
     when 'bugs'
@@ -135,7 +155,12 @@ get '/:first/:second/:third/:fourth' do
     when 'packages'
       redirect "http://packages.altlinux.org/#{first}/Sisyphus/packages/#{third}/#{fourth}", 301
     when 'srpm'
-      redirect "http://packages.altlinux.org/#{first}/Sisyphus/srpms/#{fourth}", 301
+      branch = third
+      branch = '5.1' if branch == 'Branch51'
+      branch = 'Platform5' if branch == 'p5'
+      branch = '4.1' if branch == 'Branch41'
+      branch = '4.0' if branch == 'Branch4'
+      redirect "http://packages.altlinux.org/#{first}/#{branch}/srpms/#{fourth}", 301
     else
       raise Sinatra::NotFound
     end
@@ -158,11 +183,26 @@ get '/:first/:second/:third/:fourth/:fifth' do
     when 'srpm'
       case params[:fifth]
       when 'changelog'
-        redirect "http://packages.altlinux.org/#{first}/Sisyphus/srpms/#{fourth}/changelog", 301
+        branch = third
+        branch = '5.1' if branch == 'Branch51'
+        branch = 'Platform5' if branch == 'p5'
+        branch = '4.1' if branch == 'Branch41'
+        branch = '4.0' if branch == 'Branch4'
+        redirect "http://packages.altlinux.org/#{first}/#{branch}/srpms/#{fourth}/changelog", 301
       when 'spec'
-        redirect "http://packages.altlinux.org/#{first}/Sisyphus/srpms/#{fourth}/spec", 301
+        branch = third
+        branch = '5.1' if branch == 'Branch51'
+        branch = 'Platform5' if branch == 'p5'
+        branch = '4.1' if branch == 'Branch41'
+        branch = '4.0' if branch == 'Branch4'
+        redirect "http://packages.altlinux.org/#{first}/#{branch}/srpms/#{fourth}/spec", 301
       when 'get'
-        redirect "http://packages.altlinux.org/#{first}/Sisyphus/srpms/#{fourth}/get", 301
+        branch = third
+        branch = '5.1' if branch == 'Branch51'
+        branch = 'Platform5' if branch == 'p5'
+        branch = '4.1' if branch == 'Branch41'
+        branch = '4.0' if branch == 'Branch4'
+        redirect "http://packages.altlinux.org/#{first}/#{branch}/srpms/#{fourth}/get", 301
       when 'gear'
         redirect "http://packages.altlinux.org/#{first}/Sisyphus/srpms/#{fourth}/gear", 301
       when 'bugs'
